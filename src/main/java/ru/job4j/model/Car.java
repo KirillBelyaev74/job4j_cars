@@ -18,6 +18,10 @@ public class Car {
     @Column(name = "model")
     private String model;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_customer")
+    private Customer customer;
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "car")
     private Advertisement advertisement;
 
@@ -26,7 +30,7 @@ public class Car {
             name = "car_history_owner",
             joinColumns = @JoinColumn(name = "id_car"),
             inverseJoinColumns = @JoinColumn(name = "id_customer"))
-    private List<Customer> customers = new ArrayList<>();
+    private List<Customer> historyCustomers = new ArrayList<>();
 
     public Car() {
     }
@@ -60,6 +64,14 @@ public class Car {
         this.model = model;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Advertisement getAdvertisement() {
         return advertisement;
     }
@@ -68,12 +80,12 @@ public class Car {
         this.advertisement = advertisement;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public List<Customer> getHistoryCustomers() {
+        return historyCustomers;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setHistoryCustomers(List<Customer> historyCustomers) {
+        this.historyCustomers = historyCustomers;
     }
 
     @Override
@@ -96,8 +108,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car { "
-                + "id = " + id
+        return System.lineSeparator() + "Car { " + "id = " + id
                 + ", brand = '" + brand + '\''
                 + ", model = '" + model + '\''
                 + '}';

@@ -20,6 +20,9 @@ public class Advertisement {
     @Column(name = "created")
     private Date created;
 
+    @Column(name = "photo")
+    private String photo;
+
     @Column(name = "sold")
     private boolean sold;
 
@@ -34,8 +37,9 @@ public class Advertisement {
     public Advertisement() {
     }
 
-    public Advertisement(String description) {
+    public Advertisement(String description, String photo) {
         this.description = description;
+        this.photo = photo;
         this.created = new Date();
         this.sold = false;
     }
@@ -62,6 +66,14 @@ public class Advertisement {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public boolean isSold() {
@@ -97,22 +109,23 @@ public class Advertisement {
             return false;
         }
         Advertisement that = (Advertisement) o;
-        return id == that.id && sold == that.sold
-                && Objects.equals(description, that.description)
-                && Objects.equals(created, that.created);
+        return id == that.id && sold == that.sold &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(created, that.created) &&
+                Objects.equals(photo, that.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, sold);
+        return Objects.hash(id, description, created, photo, sold);
     }
 
     @Override
     public String toString() {
-        return "Advertisement{"
-                + "id = " + id
+        return System.lineSeparator() + "Advertisement { " + "id = " + id
                 + ", description = '" + description + '\''
                 + ", created = " + created
+                + ", photo = '" + photo + '\''
                 + ", sold = " + sold
                 + '}';
     }

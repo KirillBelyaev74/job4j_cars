@@ -27,6 +27,9 @@ public class Customer {
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+    private List<Car> cars = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
     List<Advertisement> advertisements = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -34,7 +37,7 @@ public class Customer {
             name = "car_history_owner",
             joinColumns = @JoinColumn(name = "id_customer"),
             inverseJoinColumns = @JoinColumn(name = "id_car"))
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> historyCars = new ArrayList<>();
 
     public Customer() {
     }
@@ -91,6 +94,14 @@ public class Customer {
         this.password = password;
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
     public List<Advertisement> getAdvertisements() {
         return advertisements;
     }
@@ -99,12 +110,12 @@ public class Customer {
         this.advertisements = advertisements;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getHistoryCars() {
+        return historyCars;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setHistoryCars(List<Car> historyCars) {
+        this.historyCars = historyCars;
     }
 
     @Override
@@ -130,8 +141,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer { "
-                + "id = " + id
+        return System.lineSeparator() + "Customer { " + "id = " + id
                 + ", name = '" + name + '\''
                 + ", surname = '" + surname + '\''
                 + ", email = '" + email + '\''
