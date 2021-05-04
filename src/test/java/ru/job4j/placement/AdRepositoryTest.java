@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 public class AdRepositoryTest {
 
     private final ActionSQL actionSQL = new ActionSQL();
-    private final AdRepository adRepository = new AdRepository();
+    private final ActionAdvertisement adRepository = new ActionAdvertisement();
 
     @Test
     public void whenSaveAdvertisement() {
@@ -25,7 +25,7 @@ public class AdRepositoryTest {
         Car audi1 = new Car("Audi", "a7");
         audi1.setCustomer(kirill);
         actionSQL.save(audi1);
-        Advertisement one = new Advertisement("one", "photoOne");
+        Advertisement one = new Advertisement("one", 1, "photoOne");
         one.setCustomer(kirill);
         one.setCar(audi1);
         actionSQL.save(one);
@@ -35,7 +35,7 @@ public class AdRepositoryTest {
         Car audi2 = new Car("Audi", "a8");
         audi2.setCustomer(misha);
         actionSQL.save(audi2);
-        Advertisement two = new Advertisement("two", "photoTwo");
+        Advertisement two = new Advertisement("two", 2,  "photoTwo");
         two.setCustomer(misha);
         two.setCar(audi2);
         actionSQL.save(two);
@@ -45,7 +45,7 @@ public class AdRepositoryTest {
         Car mercedes = new Car("Mercedes", "E");
         mercedes.setCustomer(nelli);
         actionSQL.save(mercedes);
-        Advertisement three = new Advertisement("three", "photoThree");
+        Advertisement three = new Advertisement("three", 3, "photoThree");
         three.setCustomer(nelli);
         three.setCar(mercedes);
         actionSQL.save(three);
@@ -56,21 +56,21 @@ public class AdRepositoryTest {
         evgeniy.setHistoryCars(List.of(audi1, audi2, mercedes));
         actionSQL.save(evgeniy);
 
-        Advertisement sold1 = new Advertisement("soled1", "photo1");
+        Advertisement sold1 = new Advertisement("soled1", 1,  "photo1");
         sold1.setCustomer(evgeniy);
         sold1.setCar(audi1);
         sold1.setSold(true);
         sold1.setCreated(new GregorianCalendar(2021, Calendar.JANUARY, 1).getTime());
         actionSQL.save(sold1);
 
-        Advertisement sold2 = new Advertisement("soled2", "photo2");
+        Advertisement sold2 = new Advertisement("soled2", 2,  "photo2");
         sold2.setCustomer(evgeniy);
         sold2.setSold(true);
         sold2.setCar(audi2);
         sold2.setCreated(new GregorianCalendar(2021, Calendar.FEBRUARY, 1).getTime());
         actionSQL.save(sold2);
 
-        Advertisement sold3 = new Advertisement("soled3", "photo3");
+        Advertisement sold3 = new Advertisement("soled3", 3, "photo3");
         sold3.setCustomer(evgeniy);
         sold3.setSold(true);
         sold3.setCar(mercedes);
@@ -80,28 +80,28 @@ public class AdRepositoryTest {
 
     @Test
     public void whenGetAllAdvertisement() {
-        List<Advertisement> advertisements = adRepository.getAllAdvertisement();
+        List<Advertisement> advertisements = adRepository.getAll();
         assertThat(advertisements.size(), is(6));
         System.out.println(advertisements);
     }
 
     @Test
     public void whenGetAllAdvertisementLastDay() {
-        List<Advertisement> advertisements = adRepository.getAdvertisementForLastDay();
+        List<Advertisement> advertisements = adRepository.getForLastDay();
         assertThat(advertisements.size(), is(3));
         System.out.println(advertisements);
     }
 
     @Test
     public void whenGetAllAdvertisementHasPhoto() {
-        List<Advertisement> advertisements = adRepository.getAdvertisementHasPhotoOfCar();
+        List<Advertisement> advertisements = adRepository.getHasPhotoOfCar();
         assertThat(advertisements.size(), is(6));
         System.out.println(advertisements);
     }
 
     @Test
     public void whenGetAllAdvertisementNotSold() {
-        List<Advertisement> advertisements = adRepository.getAllAdvertisementNotSold();
+        List<Advertisement> advertisements = adRepository.getAllNotSold();
         assertThat(advertisements.size(), is(3));
         System.out.println(advertisements);
     }

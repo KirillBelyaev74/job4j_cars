@@ -1,7 +1,69 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>ru.job4j.controller.Index</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>ru.job4j.controller.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Exit</servlet-name>
+        <servlet-class>ru.job4j.controller.Exit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Exit</servlet-name>
+        <url-pattern>/exit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddAdvertisement</servlet-name>
+        <servlet-class>ru.job4j.controller.AddAdvertisement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddAdvertisement</servlet-name>
+        <url-pattern>/addAdvertisement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateAdvertisement</servlet-name>
+        <servlet-class>ru.job4j.controller.UpdateAdvertisement</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateAdvertisement</servlet-name>
+        <url-pattern>/updateAdvertisement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddPhoto</servlet-name>
+        <servlet-class>ru.job4j.controller.AddPhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddPhoto</servlet-name>
+        <url-pattern>/addPhoto</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowPhoto</servlet-name>
+        <servlet-class>ru.job4j.controller.ShowPhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowPhoto</servlet-name>
+        <url-pattern>/showPhoto</url-pattern>
+    </servlet-mapping>
+
 </web-app>

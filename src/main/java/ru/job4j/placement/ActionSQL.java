@@ -18,7 +18,7 @@ public class ActionSQL {
         return InstanceSessionFactory.SESSION_FACTORY;
     }
 
-    public <T> T save(T t) {
+    protected <T> T save(T t) {
         try (Session session = getInstance().openSession()) {
             session.beginTransaction();
             session.save(t);
@@ -27,7 +27,7 @@ public class ActionSQL {
         return t;
     }
 
-    public <T> T action(Function<Session, T> action) {
+    protected <T> T action(Function<Session, T> action) {
         T t = null;
         Transaction transaction = null;
         try (Session session = getInstance().openSession()) {

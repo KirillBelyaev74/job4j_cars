@@ -108,7 +108,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return System.lineSeparator() + "Car { " + "id = " + id
+        return "Car { " + "id = " + id
                 + ", brand = '" + brand + '\''
                 + ", model = '" + model + '\''
                 + '}';

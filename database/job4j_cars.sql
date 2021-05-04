@@ -9,10 +9,10 @@ create table customer
 
 create table car
 (
-    id    serial primary key,
-    brand varchar(20) not null,
-    model varchar(20) not null,
-    id_customer smallint references customer(id),
+    id          serial primary key,
+    brand       varchar(20) not null,
+    model       varchar(20) not null,
+    id_customer smallint references customer (id),
     constraint unique_brand_model unique (brand, model)
 );
 
@@ -27,10 +27,11 @@ create table advertisement
 (
     id          serial primary key,
     description text,
+    price       int,
     created     timestamp not null,
     photo       varchar unique,
     sold        boolean default false,
     id_car      smallint references car (id),
-    id_customer smallint not null references customer (id),
+    id_customer smallint  not null references customer (id),
     constraint unique_id_car_id_customer unique (id_car, id_customer)
 );

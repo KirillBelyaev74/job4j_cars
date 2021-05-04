@@ -141,7 +141,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return System.lineSeparator() + "Customer { " + "id = " + id
+        return "Customer { "
+                + "id = " + id
                 + ", name = '" + name + '\''
                 + ", surname = '" + surname + '\''
                 + ", email = '" + email + '\''

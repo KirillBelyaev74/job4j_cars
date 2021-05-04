@@ -16,6 +16,9 @@ public class Advertisement {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "price")
+    private int price;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")
     private Date created;
@@ -37,8 +40,16 @@ public class Advertisement {
     public Advertisement() {
     }
 
-    public Advertisement(String description, String photo) {
+    public Advertisement(String description, int price) {
         this.description = description;
+        this.price = price;
+        this.created = new Date();
+        this.sold = false;
+    }
+
+    public Advertisement(String description, int price, String photo) {
+        this.description = description;
+        this.price = price;
         this.photo = photo;
         this.created = new Date();
         this.sold = false;
@@ -58,6 +69,14 @@ public class Advertisement {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public Date getCreated() {
@@ -109,24 +128,26 @@ public class Advertisement {
             return false;
         }
         Advertisement that = (Advertisement) o;
-        return id == that.id && sold == that.sold &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(created, that.created) &&
-                Objects.equals(photo, that.photo);
+        return id == that.id
+                && price == that.price
+                && sold == that.sold
+                && Objects.equals(description, that.description)
+                && Objects.equals(created, that.created)
+                && Objects.equals(photo, that.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, photo, sold);
+        return Objects.hash(id, description, price, created, photo, sold);
     }
 
     @Override
     public String toString() {
-        return System.lineSeparator() + "Advertisement { " + "id = " + id
+        return "Advertisement { " + "id = " + id
                 + ", description = '" + description + '\''
+                + ", price = " + price
                 + ", created = " + created
                 + ", photo = '" + photo + '\''
-                + ", sold = " + sold
-                + '}';
+                + ", sold = " + sold + '}';
     }
 }
