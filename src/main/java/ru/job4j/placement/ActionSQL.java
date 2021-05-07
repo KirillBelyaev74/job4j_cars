@@ -38,7 +38,7 @@ public class ActionSQL {
             if (transaction != null) {
                 transaction.rollback();
             }
-            LOGGER.error("Сonnection error. Mistake save : " + e + ". Method has arguments action " + action);
+            LOGGER.error("Method has arguments action " + action + "Сonnection error. Mistake save :", e);
         }
         return t;
     }
